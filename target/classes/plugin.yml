@@ -1,0 +1,8 @@
+name: duelPlugin
+main: me.hughjph.duelMod.Main
+version: 1.0
+
+commands:
+  duel:
+    description: sends a duel challenge to a player
+    
