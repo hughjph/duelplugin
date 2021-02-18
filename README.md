@@ -6,4 +6,4 @@ You will have to enter the coordinates of the starting points of the players in 
 
 <h3>You can find the place to enter the coordinates at
 
-INSERT FILE PATH HERE
+<p>INSERT FILE PATH HERE
