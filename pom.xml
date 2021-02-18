@@ -18,7 +18,10 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/conten/repositories/snapshot</url>
         </repository>
-
+        <repository>
+            <id>oss.sonatype.org</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -27,6 +30,11 @@
             <artifactId>spigot-api</artifactId>
             <version>1.16.5-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.jcabi</groupId>
+            <artifactId>jcabi-aspects</artifactId>
+            <version>0.22.6</version>
         </dependency>
     </dependencies>
 
