@@ -17,15 +17,23 @@ public class accept implements Listener {
 
     @EventHandler
     public static void chatEvent(AsyncPlayerChatEvent e){
+        /*
         Player p = e.getPlayer();
         String msg = e.getMessage();
         p.sendMessage("Chat incoming");
         p.sendMessage(duelPlayer.challengedPlayers.toString());
-        if(duelPlayer.challengedPlayers.contains(p.getName()) && msg == "a"){
-            p.sendMessage("You have accepted the challenge");
-            Player Challenger = Bukkit.getPlayer(duelPlayer.challengedPlayers.get(duelPlayer.challengedPlayers.indexOf(p.getName())).Challenger);
-            duelPlayer.DuelStart(Challenger, p);
-        }
+        p.sendMessage(msg);
+        boolean player = duelPlayer.challengedPlayers.contains(p.getName());
+        p.sendMessage(player + "");
+        if(duelPlayer.challengedPlayers.contains(p.getName())){
+            p.sendMessage("Challenger verified");
+            if(msg == "a"){
+                p.sendMessage("You have accepted the challenge");
+                Player Challenger = Bukkit.getPlayer(duelPlayer.challengingPlayers.get(duelPlayer.challengedPlayers.indexOf(p.getName())).toString());
+                duelPlayer.DuelStart(Challenger, p);
+            }
+
+        }*/
     }
 
 

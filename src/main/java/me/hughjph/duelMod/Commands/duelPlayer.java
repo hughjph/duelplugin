@@ -2,7 +2,9 @@ package me.hughjph.duelMod.Commands;
 
 import com.jcabi.aspects.Async;
 import jdk.nashorn.internal.parser.JSONParser;
+import me.hughjph.duelMod.Main;
 import me.hughjph.duelMod.classes.Duel;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -15,13 +17,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 public class duelPlayer implements CommandExecutor {
 
-    public static List<Duel> challengedPlayers = new ArrayList();
+    public static List challengedPlayers = new ArrayList();
+    public static List challengingPlayers = new ArrayList();
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
@@ -43,19 +50,52 @@ public class duelPlayer implements CommandExecutor {
                 Player targetPlayer = p.getServer().getPlayer(args [0]);
                 p.sendMessage("Sent duel request");
                 targetPlayer.sendMessage(p.getName() + " has challenged you to a duel! Type a to accept");
-                challengedPlayers.add(new Duel(targetPlayer.getName(), p.getName()));
-                challengerCountdown(targetPlayer, p);
+                challengedPlayers.add(targetPlayer.getName());
+                challengingPlayers.add(p.getName());
+                countdown(targetPlayer, p);
+
+
             }
         }
         return true;
 
     }
+
+
+
+
+
+    public void countdown(Player targetPlayer, Player player){
+
+        Plugin plugin = Main.getPlugin(Main.class);
+
+        new BukkitRunnable() {
+            int count = 60;
+            @Override
+            public void run() {
+                count--;
+                if(count == 0){
+                    if(challengedPlayers.contains(targetPlayer.getName())){
+                        targetPlayer.sendMessage("Challenge Expired");
+                        player.sendMessage("Challenge Expired");
+                        challengedPlayers.remove(targetPlayer.getName());
+                        challengingPlayers.remove(player.getName());
+                    }
+                }
+            }
+        }.runTaskTimer(plugin, 0, 20);
+
+
+
+    }
+
+
     @Async
     public void challengerCountdown(Player targetPlayer, Player player){
         boolean accepted = false;
         long sec = 1;
         try {
-            Thread.sleep(1000);
+            Thread.sleep(30000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -63,6 +103,7 @@ public class duelPlayer implements CommandExecutor {
             targetPlayer.sendMessage("Challenge Expired");
             player.sendMessage("Challenge Expired");
             challengedPlayers.remove(targetPlayer.getName());
+            challengingPlayers.remove(player.getName());
         } else{
             return;
         }
