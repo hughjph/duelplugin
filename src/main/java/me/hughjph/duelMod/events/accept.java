@@ -16,11 +16,12 @@ public class accept implements Listener {
     private HashMap<UUID,Long> map = new HashMap<UUID,Long>();
 
     @EventHandler
-    public void chatEvent(AsyncPlayerChatEvent e){
+    public static void chatEvent(AsyncPlayerChatEvent e){
         Player p = e.getPlayer();
         String msg = e.getMessage();
-
-        if(duelPlayer.challengedPlayers.contains(p.getName()) && msg == "/a"){
+        p.sendMessage("Chat incoming");
+        p.sendMessage(duelPlayer.challengedPlayers.toString());
+        if(duelPlayer.challengedPlayers.contains(p.getName()) && msg == "a"){
             p.sendMessage("You have accepted the challenge");
             Player Challenger = Bukkit.getPlayer(duelPlayer.challengedPlayers.get(duelPlayer.challengedPlayers.indexOf(p.getName())).Challenger);
             duelPlayer.DuelStart(Challenger, p);

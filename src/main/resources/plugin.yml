@@ -5,4 +5,5 @@ version: 1.0
 commands:
   duel:
     description: sends a duel challenge to a player
-    
+  a:
+    description: accepts duel
