@@ -15,9 +15,9 @@ public class acceptChallenge implements CommandExecutor {
         }
 
         Player p = (Player) sender;
-        p.sendMessage("GOLOLOGO");
+
         if(label.equalsIgnoreCase("a")){
-            p.sendMessage("Command Executed");
+
             if(duelPlayer.challengedPlayers.contains(p.getName())){
                 p.sendMessage("You have accepted the challenge");
                 Player Challenger = Bukkit.getPlayer(duelPlayer.challengingPlayers.get(duelPlayer.challengedPlayers.indexOf(p.getName())).toString());
