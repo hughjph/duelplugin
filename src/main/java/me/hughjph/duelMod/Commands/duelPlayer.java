@@ -47,22 +47,25 @@ public class duelPlayer implements CommandExecutor {
         }
 
         Player p = (Player) sender;
-/*
+
         if(args.length != 1){
             sender.sendMessage("You need to challenge a player");
             return false;
-        }*/
+        }
 
         if(label.equalsIgnoreCase("duel")){
 
             if(args.length == 1){
                 Player targetPlayer = p.getServer().getPlayer(args [0]);
+                if(targetPlayer.getName() == p.getName()){
+                    p.sendMessage("You can't duel yourself!");
+                    return true;
+                }
                 p.sendMessage("Sent duel request");
-                targetPlayer.sendMessage(p.getName() + " has challenged you to a duel! Type a to accept");
+                targetPlayer.sendMessage("§c"+ p.getName() + " has challenged you to a duel! Type §5/a §cto accept");
                 challengedPlayers.add(targetPlayer.getName());
                 challengingPlayers.add(p.getName());
                 countdown(targetPlayer, p);
-
 
             }
         }
@@ -118,7 +121,8 @@ public class duelPlayer implements CommandExecutor {
 
         Challenged.sendMessage("You will be teleported to " + p2Spawn);
         Challenger.sendMessage("You will be teleported to " + p1Spawn);
-
+        Challenged.teleport(p2Spawn);
+        Challenger.teleport(p1Spawn);
 
         Challenger.getInventory().clear();
         Challenger.getInventory().addItem(duelKit);
@@ -128,6 +132,8 @@ public class duelPlayer implements CommandExecutor {
         Challenged.getInventory().addItem(duelKit);
         Challenged.getInventory().setArmorContents(armour);
 
+        Challenged.setHealth(20);
+        Challenger.setHealth(20);
 
         /*
         org.json.simple.parser.JSONParser parser;
