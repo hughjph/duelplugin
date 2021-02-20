@@ -124,8 +124,7 @@ public class duelPlayer implements CommandExecutor {
         p1Spawn = new Location(Challenger.getWorld(), -331, 74, -427);
         p2Spawn = new Location(Challenger.getWorld(), -342, 74, -426);
 
-        Challenged.sendMessage("You will be teleported to " + p2Spawn);
-        Challenger.sendMessage("You will be teleported to " + p1Spawn);
+
         Challenged.teleport(p2Spawn);
         Challenger.teleport(p1Spawn);
 

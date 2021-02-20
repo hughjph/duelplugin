@@ -22,8 +22,8 @@ public class duelDeath implements Listener {
             duelPlayer.duelingPlayers.remove(winner.getName());
 
 
-            dead.sendMessage("You Lost");
-            winner.sendMessage("You Win!");
+            dead.sendMessage("§6You Lost");
+            winner.sendMessage("§6You Win!");
 
             winner.setHealth(0);
 

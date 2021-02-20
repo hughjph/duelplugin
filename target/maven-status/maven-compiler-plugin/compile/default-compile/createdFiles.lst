@@ -1,4 +1,5 @@
 me\hughjph\duelMod\classes\Duel.class
+me\hughjph\duelMod\events\duelDeath.class
 me\hughjph\duelMod\Commands\duelPlayer$1.class
 me\hughjph\duelMod\Commands\acceptChallenge.class
 me\hughjph\duelMod\Commands\duelPlayer.class
