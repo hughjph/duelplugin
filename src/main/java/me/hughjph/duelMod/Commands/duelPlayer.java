@@ -35,9 +35,13 @@ public class duelPlayer implements CommandExecutor {
 
     public static List challengedPlayers = new ArrayList();
     public static List challengingPlayers = new ArrayList();
+    public static List duelingPlayers = new ArrayList();
+
 
     public static Location p1Spawn = null;
     public static Location p2Spawn = null;
+
+
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
@@ -103,7 +107,8 @@ public class duelPlayer implements CommandExecutor {
     public static void DuelStart(Player Challenger, Player Challenged){
         challengingPlayers.remove(Challenger.getName());
         challengedPlayers.remove(Challenged.getName());
-
+        duelingPlayers.add(Challenged.getName());
+        duelingPlayers.add(Challenger.getName());
 
         ItemStack healingPotion = new ItemStack(Material.SPLASH_POTION, 3);
         PotionMeta potionMeta = (PotionMeta) healingPotion.getItemMeta();
