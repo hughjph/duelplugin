@@ -114,6 +114,7 @@ public class duelPlayer implements CommandExecutor {
         PotionMeta potionMeta = (PotionMeta) healingPotion.getItemMeta();
         PotionEffect regen = new PotionEffect(PotionEffectType.REGENERATION, 1000, 1);
         potionMeta.addCustomEffect(regen, true);
+        potionMeta.setDisplayName("Splash Potion of Regeneration");
         healingPotion.setItemMeta(potionMeta);
 
 
