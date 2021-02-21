@@ -10,6 +10,7 @@ import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 
 import java.io.FileNotFoundException;
@@ -20,6 +21,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.Potion;
@@ -122,10 +124,17 @@ public class duelPlayer implements CommandExecutor {
         potionMeta.setDisplayName("Splash Potion of Regeneration");
         healingPotion.setItemMeta(potionMeta);
 
+        ItemStack sword = new ItemStack(Material.NETHERITE_SWORD, 1);
+        sword.addUnsafeEnchantment(Enchantment.DAMAGE_ALL, 3);
 
-        ItemStack[] duelKit = {new ItemStack(Material.NETHERITE_SWORD), new ItemStack(healingPotion)};
+
+        ItemStack[] duelKit = {sword, new ItemStack(healingPotion)};
         ItemStack[] armour = {new ItemStack(Material.NETHERITE_BOOTS), new ItemStack(Material.NETHERITE_LEGGINGS)
         ,new ItemStack(Material.NETHERITE_CHESTPLATE), new ItemStack(Material.NETHERITE_HELMET)};
+
+        for(int i = 0; i < armour.length; i++){
+            armour[i].addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 3);
+        }
 
         p1Spawn = new Location(Challenger.getWorld(), -331, 74, -427);
         p2Spawn = new Location(Challenger.getWorld(), -342, 74, -426);
