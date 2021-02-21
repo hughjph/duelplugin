@@ -50,6 +50,11 @@ public class duelPlayer implements CommandExecutor {
             return true;
         }
 
+        if(!(duelingPlayers.size() == 0)){
+            sender.sendMessage("§5There is currently a duel going on, try again in a few minutes!");
+            return true;
+        }
+
         Player p = (Player) sender;
 
         if(args.length != 1){
