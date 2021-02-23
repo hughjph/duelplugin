@@ -24,7 +24,7 @@ public class duelPlayer implements CommandExecutor {
     public static List challengedPlayers = new ArrayList();
     public static List challengingPlayers = new ArrayList();
     public static List duelingPlayers = new ArrayList();
-
+    public static List takenDuelLocations = new ArrayList();
 
     public static Location p1Spawn = null;
     public static Location p2Spawn = null;
