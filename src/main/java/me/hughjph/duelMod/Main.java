@@ -14,7 +14,7 @@ public class Main extends JavaPlugin {
         getCommand("duel").setExecutor(new duelPlayer());
         getCommand("a").setExecutor(new acceptChallenge());
         getServer().getPluginManager().registerEvents(new duelDeath(), this);
-        //getServer().getPluginManager().registerEvents(new accept(), this);
+
     }
 
 }

@@ -47,23 +47,34 @@ public class duelPlayer implements CommandExecutor {
 
         Player p = (Player) sender;
 
+        //checking if a player has been challenged with the duel command
         if(args.length != 1){
             sender.sendMessage("You need to challenge a player");
             return false;
         }
 
+
         if(label.equalsIgnoreCase("duel")){
 
             if(args.length == 1){
+                //getting the target player
                 Player targetPlayer = p.getServer().getPlayer(args [0]);
+
+                //making sure that they aren't trying to duel themselves
                 if(targetPlayer.getName() == p.getName()){
                     p.sendMessage("You can't duel yourself!");
                     return true;
                 }
+
+                //sending duel messages
                 p.sendMessage("Sent duel request");
                 targetPlayer.sendMessage("§c"+ p.getName() + " has challenged you to a duel! Type §5/a §cto accept");
+
+                //adding them to the challenged players pool
                 challengedPlayers.add(targetPlayer.getName());
                 challengingPlayers.add(p.getName());
+
+                //start the countdown for how long the timer will last
                 countdown(targetPlayer, p);
 
             }
