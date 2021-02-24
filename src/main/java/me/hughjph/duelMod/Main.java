@@ -28,6 +28,7 @@ import java.util.List;
 public class Main extends JavaPlugin {
 
     public static List locationArray = new ArrayList();
+    public static List locationsTaken = new ArrayList();
     public File path = new File(this.getDataFolder(), "coordinates.json");
 
 
@@ -59,33 +60,31 @@ public class Main extends JavaPlugin {
                 for(Object locLines : locArray){
                     JSONObject locData = (JSONObject) locLines;
                     System.out.println(locData.get("x1"));
+
+
+
+
+                    int x = Integer.parseInt(locData.get("x1").toString());
+                    int y = Integer.parseInt(locData.get("y1").toString());
+                    int z = Integer.parseInt(locData.get("z1").toString());
+
+
+                    Location loc1 = new Location(Bukkit.getWorld("world"), x, y, z);
+                    System.out.println(loc1.toString());
+
+
+                    x = Integer.parseInt(locData.get("x2").toString());
+                    y = Integer.parseInt(locData.get("y2").toString());
+                    z = Integer.parseInt(locData.get("z2").toString());
+                    Location loc2 = new Location(Bukkit.getWorld("world"), x ,y, z);
+                    System.out.println(loc2.toString());
+
+
+                    locationArray.add(new PlayerLocation(loc1, loc2));
+
+
                 }
             }
-
-
-            /*
-            for(int i = 0; i<jsonArray.size(); i++){
-                JSONObject location = (JSONObject) jsonArray.get(i);
-                System.out.println(location);
-                System.out.println(location.get("x1"));
-                int x = (int) location.get("x1");
-                int y = (int) location.get("y1");
-                int z = (int) location.get("z1");
-
-
-                Location loc1 = new Location(Bukkit.getWorld("world"), x, y, z);
-                Bukkit.broadcastMessage(loc1.toString());
-
-
-                x = (int) location.get("x2");
-                y = (int) location.get("y2");
-                z = (int) location.get("z2");
-                Location loc2 = new Location(Bukkit.getWorld("world"), x ,y, z);
-                Bukkit.broadcastMessage(loc2.toString());
-
-
-                locationArray.add(new PlayerLocation(loc1, loc2));
-            }*/
 
         }catch(NullPointerException | ParseException | IOException e){
             e.printStackTrace();
