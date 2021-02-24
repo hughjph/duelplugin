@@ -49,7 +49,7 @@ public class Main extends JavaPlugin {
         try{
 
             JSONParser jsonParser = new JSONParser();
-
+            //getting the JSON data from the json file
             Object parsed = jsonParser.parse(new FileReader(path.getPath()));
             JSONObject jsonObject = (JSONObject) parsed;
             JSONArray jsonArray = (JSONArray) jsonObject.get("Locations");

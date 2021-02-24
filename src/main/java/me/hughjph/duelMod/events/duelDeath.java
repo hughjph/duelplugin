@@ -20,6 +20,7 @@ public class duelDeath implements Listener {
             //getting the duel winner
             Player winner = dead.getKiller();
 
+            //finding the index of the map in the locationsTaken array and removing it
             if(duelPlayer.duelingPlayers.indexOf(winner.getName()) % 2 == 0){
                 Main.locationsTaken.remove(duelPlayer.duelingPlayers.indexOf(winner.getName()) / 2);
             } else{
