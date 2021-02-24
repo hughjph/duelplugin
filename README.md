@@ -6,7 +6,7 @@ You will have to enter the coordinates of the starting points of the players in 
 
 
 
-To change the locations where duels can happen go to <br>
+To change the locations where duels can happen go to: <br>
 <br>
 _**DuelPluginPackage/duelPlugin/coordinates.json**_
 <br><br>
