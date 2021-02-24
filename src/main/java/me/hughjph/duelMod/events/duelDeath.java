@@ -1,6 +1,7 @@
 package me.hughjph.duelMod.events;
 
 import me.hughjph.duelMod.Commands.duelPlayer;
+import me.hughjph.duelMod.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,13 @@ public class duelDeath implements Listener {
         if(duelPlayer.duelingPlayers.contains(dead.getName())){
             //getting the duel winner
             Player winner = dead.getKiller();
+
+            if(duelPlayer.duelingPlayers.indexOf(winner.getName()) % 2 == 0){
+                Main.locationsTaken.remove(duelPlayer.duelingPlayers.indexOf(winner.getName()) / 2);
+            } else{
+                Main.locationsTaken.remove(duelPlayer.duelingPlayers.indexOf(dead.getName()) / 2);
+            }
+            System.out.println(Main.locationsTaken);
 
             //removing them from the currently duelling list
             duelPlayer.duelingPlayers.remove(dead.getName());

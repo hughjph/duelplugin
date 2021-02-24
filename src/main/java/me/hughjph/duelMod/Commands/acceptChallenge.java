@@ -1,5 +1,6 @@
 package me.hughjph.duelMod.Commands;
 
+import me.hughjph.duelMod.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,9 +25,9 @@ public class acceptChallenge implements CommandExecutor {
                 Player Challenger = Bukkit.getPlayer(duelPlayer.challengingPlayers.get(duelPlayer.challengedPlayers.indexOf(p.getName())).toString());
 
                 //checking if there is a free duel spot
-                if(!(duelPlayer.duelingPlayers.size() == 0)){
-                    sender.sendMessage("§5There is currently a duel going on, try again in a few minutes!");
-                    Challenger.sendMessage("§5There is currently a duel going on, try again in a few minutes!");
+                if(Main.locationArray.size() == Main.locationsTaken.size()){
+                    sender.sendMessage("§5There are currently no free duel spots!");
+                    Challenger.sendMessage("§5There are currently no free duel spots!");
                     return true;
                 }
 

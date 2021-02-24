@@ -61,26 +61,18 @@ public class Main extends JavaPlugin {
                     JSONObject locData = (JSONObject) locLines;
                     System.out.println(locData.get("x1"));
 
+                    int x1 = Integer.parseInt(locData.get("x1").toString());
+                    int y1 = Integer.parseInt(locData.get("y1").toString());
+                    int z1 = Integer.parseInt(locData.get("z1").toString());
+
+                    int x2= Integer.parseInt(locData.get("x2").toString());
+                    int y2 = Integer.parseInt(locData.get("y2").toString());
+                    int z2 = Integer.parseInt(locData.get("z2").toString());
 
 
 
-                    int x = Integer.parseInt(locData.get("x1").toString());
-                    int y = Integer.parseInt(locData.get("y1").toString());
-                    int z = Integer.parseInt(locData.get("z1").toString());
 
-
-                    Location loc1 = new Location(Bukkit.getWorld("world"), x, y, z);
-                    System.out.println(loc1.toString());
-
-
-                    x = Integer.parseInt(locData.get("x2").toString());
-                    y = Integer.parseInt(locData.get("y2").toString());
-                    z = Integer.parseInt(locData.get("z2").toString());
-                    Location loc2 = new Location(Bukkit.getWorld("world"), x ,y, z);
-                    System.out.println(loc2.toString());
-
-
-                    locationArray.add(new PlayerLocation(loc1, loc2));
+                    locationArray.add(new PlayerLocation(x1, y1, z1, x2, y2, z2));
 
 
                 }

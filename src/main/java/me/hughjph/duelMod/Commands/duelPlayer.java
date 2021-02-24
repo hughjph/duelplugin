@@ -1,6 +1,7 @@
 package me.hughjph.duelMod.Commands;
 
 import me.hughjph.duelMod.Main;
+import me.hughjph.duelMod.classes.PlayerLocation;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -24,7 +25,7 @@ public class duelPlayer implements CommandExecutor {
     public static List challengedPlayers = new ArrayList();
     public static List challengingPlayers = new ArrayList();
     public static List duelingPlayers = new ArrayList();
-    public static List takenDuelLocations = new ArrayList();
+
 
     public static Location p1Spawn = null;
     public static Location p2Spawn = null;
@@ -40,8 +41,8 @@ public class duelPlayer implements CommandExecutor {
         }
 
         //if players are duelling it wont run
-        if(!(duelingPlayers.size() == 0)){
-            sender.sendMessage("§5There is currently a duel going on, try again in a few minutes!");
+        if(Main.locationArray.size() == Main.locationsTaken.size()){
+            sender.sendMessage("§5There are currently no free duel spots!");
             return true;
         }
 
@@ -114,10 +115,33 @@ public class duelPlayer implements CommandExecutor {
 
     }
 
+    public static int FindLocation(){
+        for(int i = 0; i<Main.locationArray.size(); i++){
+            if(Main.locationsTaken.contains(i)){
+                System.out.println(i + " taken");
+            }
+            else{
+                System.out.println("Location found at " + i);
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
 
     //Function for starting the duel
     @SuppressWarnings("unchecked")
     public static void DuelStart(Player Challenger, Player Challenged){
+        int LocationNum = FindLocation();
+
+        if(LocationNum == -1){
+            Challenged.sendMessage("There are no free duel slots try again later!");
+            Challenger.sendMessage("There are no free duel slots try again later!");
+            return;
+        }
+
+        Main.locationsTaken.add(LocationNum);
 
         //Removing players from the list of players requested to duel
         challengingPlayers.remove(Challenger.getName());
@@ -151,8 +175,8 @@ public class duelPlayer implements CommandExecutor {
         }
 
         //Spawn locations for the duel, only supports one duel at a time
-        p1Spawn = new Location(Challenger.getWorld(), -331, 74, -427);
-        p2Spawn = new Location(Challenger.getWorld(), -342, 74, -426);
+        p1Spawn = initLoc1(LocationNum, Challenger);
+        p2Spawn = initLoc2(LocationNum, Challenger);
 
         //Teleporting the players to the relevant spawn point
         Challenged.teleport(p2Spawn);
@@ -171,6 +195,21 @@ public class duelPlayer implements CommandExecutor {
         Challenged.setHealth(20);
         Challenger.setHealth(20);
 
+
+    }
+
+
+    static Location initLoc1(int index, Player playerWorld){
+        PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
+        Location p1Loc = new Location(playerWorld.getWorld(), loc.x1, loc.y1, loc.z1);
+        return  p1Loc;
+
+    }
+
+    static Location initLoc2(int index, Player playerWorld){
+        PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
+        Location p2Loc = new Location(playerWorld.getWorld(), loc.x2, loc.y2, loc.z2);
+        return  p2Loc;
 
     }
 
