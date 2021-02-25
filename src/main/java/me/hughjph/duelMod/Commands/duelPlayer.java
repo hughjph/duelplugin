@@ -54,6 +54,11 @@ public class duelPlayer implements CommandExecutor {
             return false;
         }
 
+        if(!(p.getLocation().getWorld().getName().equalsIgnoreCase("world"))){
+            sender.sendMessage("§4You can only challenge players from the over world!");
+            return false;
+        }
+
 
         if(label.equalsIgnoreCase("duel")){
 
