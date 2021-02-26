@@ -54,10 +54,7 @@ public class duelPlayer implements CommandExecutor {
             return false;
         }
 
-        if(!(p.getLocation().getWorld().getName().equalsIgnoreCase("world"))){
-            sender.sendMessage("§4You can only challenge players from the over world!");
-            return false;
-        }
+
 
 
         if(label.equalsIgnoreCase("duel")){
@@ -206,14 +203,14 @@ public class duelPlayer implements CommandExecutor {
 
     static Location initLoc1(int index, Player playerWorld){
         PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
-        Location p1Loc = new Location(playerWorld.getWorld(), loc.x1, loc.y1, loc.z1);
+        Location p1Loc = new Location(loc.wName, loc.x1, loc.y1, loc.z1);
         return  p1Loc;
 
     }
 
     static Location initLoc2(int index, Player playerWorld){
         PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
-        Location p2Loc = new Location(playerWorld.getWorld(), loc.x2, loc.y2, loc.z2);
+        Location p2Loc = new Location(loc.wName, loc.x2, loc.y2, loc.z2);
         return  p2Loc;
 
     }

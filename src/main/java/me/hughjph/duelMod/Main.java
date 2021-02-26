@@ -61,6 +61,8 @@ public class Main extends JavaPlugin {
                     JSONObject locData = (JSONObject) locLines;
                     System.out.println(locData.get("x1"));
 
+                    String world = (String) locData.get("worldName");
+
                     int x1 = Integer.parseInt(locData.get("x1").toString());
                     int y1 = Integer.parseInt(locData.get("y1").toString());
                     int z1 = Integer.parseInt(locData.get("z1").toString());
@@ -72,7 +74,7 @@ public class Main extends JavaPlugin {
 
 
 
-                    locationArray.add(new PlayerLocation(x1, y1, z1, x2, y2, z2));
+                    locationArray.add(new PlayerLocation(world, x1, y1, z1, x2, y2, z2));
 
 
                 }

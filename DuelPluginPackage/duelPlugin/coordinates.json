@@ -3,6 +3,7 @@
     [
       {"Location": [
         {
+          "worldName" : "world",
           "x1" : -331,
           "y1": 74,
           "z1": -427,
