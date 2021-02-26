@@ -2,8 +2,10 @@ package me.hughjph.duelMod.Commands;
 
 import me.hughjph.duelMod.Main;
 import me.hughjph.duelMod.classes.PlayerLocation;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.Server;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -180,9 +182,15 @@ public class duelPlayer implements CommandExecutor {
         p1Spawn = initLoc1(LocationNum, Challenger);
         p2Spawn = initLoc2(LocationNum, Challenger);
 
+
+        PlayerLocation loc = (PlayerLocation) Main.locationArray.get(LocationNum);
+        String worldName = loc.wName.getName();
+        Challenged.sendMessage("§aSending you to " + worldName);
+        Challenger.sendMessage("§aSending you to " + worldName);
         //Teleporting the players to the relevant spawn point
         Challenged.teleport(p2Spawn);
         Challenger.teleport(p1Spawn);
+
 
         //Clearing the inventories and adding the armour and item kits
         Challenger.getInventory().clear();
