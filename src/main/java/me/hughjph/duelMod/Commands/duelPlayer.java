@@ -183,10 +183,10 @@ public class duelPlayer implements CommandExecutor {
         p2Spawn = initLoc2(LocationNum, Challenger);
 
 
-        PlayerLocation loc = (PlayerLocation) Main.locationArray.get(LocationNum);
-        String worldName = loc.wName.getName();
-        Challenged.sendMessage("§aSending you to " + worldName);
-        Challenger.sendMessage("§aSending you to " + worldName);
+        //PlayerLocation loc = (PlayerLocation) Main.locationArray.get(LocationNum);
+        //String worldName = loc.wName.getName();
+        //Challenged.sendMessage("§aSending you to " + worldName);
+        //Challenger.sendMessage("§aSending you to " + worldName);
         //Teleporting the players to the relevant spawn point
         Challenged.teleport(p2Spawn);
         Challenger.teleport(p1Spawn);
@@ -218,6 +218,7 @@ public class duelPlayer implements CommandExecutor {
 
     static Location initLoc2(int index, Player playerWorld){
         PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
+
         Location p2Loc = new Location(loc.wName, loc.x2, loc.y2, loc.z2);
         return  p2Loc;
 
