@@ -10,6 +10,7 @@ import me.hughjph.duelMod.events.accept;
 import me.hughjph.duelMod.events.duelDeath;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,6 +31,7 @@ public class Main extends JavaPlugin {
     public static List locationArray = new ArrayList();
     public static List locationsTaken = new ArrayList();
     public File path = new File(this.getDataFolder(), "coordinates.json");
+
 
 
     @Override
@@ -62,6 +64,10 @@ public class Main extends JavaPlugin {
                     System.out.println(locData.get("x1"));
 
                     String world = (String) locData.get("worldName");
+
+                    if(Bukkit.getWorld(world) == null){
+                        System.out.println("World " + world + " is invalid!");
+                    }
 
                     int x1 = Integer.parseInt(locData.get("x1").toString());
                     int y1 = Integer.parseInt(locData.get("y1").toString());

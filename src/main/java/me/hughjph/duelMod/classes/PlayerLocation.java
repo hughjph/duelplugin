@@ -6,7 +6,7 @@ import org.bukkit.World;
 
 public class PlayerLocation{
 
-    public World wName;
+    public String wName;
     public int x1;
     public int y1;
     public int z1;
@@ -18,7 +18,7 @@ public class PlayerLocation{
 
 
     public PlayerLocation(String world, int locx1, int locy1, int locz1, int locx2, int locy2, int locz2){
-        wName = Bukkit.getServer().getWorld(world);
+        wName = world;
         x1 = locx1;
         x2 = locx2;
         y1 = locy1;

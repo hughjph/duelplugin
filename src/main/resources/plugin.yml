@@ -9,3 +9,8 @@ commands:
     description: sends a duel challenge to a player
   a:
     description: accepts duel
+
+
+permissions:
+  duelplugin.feature:
+    default: op

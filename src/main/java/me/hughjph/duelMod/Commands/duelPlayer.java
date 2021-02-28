@@ -179,17 +179,18 @@ public class duelPlayer implements CommandExecutor {
         }
 
         //Spawn locations for the duel, only supports one duel at a time
-        p1Spawn = initLoc1(LocationNum, Challenger);
-        p2Spawn = initLoc2(LocationNum, Challenger);
 
 
-        //PlayerLocation loc = (PlayerLocation) Main.locationArray.get(LocationNum);
-        //String worldName = loc.wName.getName();
-        //Challenged.sendMessage("§aSending you to " + worldName);
-        //Challenger.sendMessage("§aSending you to " + worldName);
+
+        PlayerLocation loc = (PlayerLocation) Main.locationArray.get(LocationNum);
+
+        Challenged.sendMessage("§aSending you to " + loc.wName);
+        Challenger.sendMessage("§aSending you to " + loc.wName);
         //Teleporting the players to the relevant spawn point
-        Challenged.teleport(p2Spawn);
-        Challenger.teleport(p1Spawn);
+
+        initLoc1(LocationNum, Challenger);
+        initLoc2(LocationNum, Challenged);
+
 
 
         //Clearing the inventories and adding the armour and item kits
@@ -209,18 +210,20 @@ public class duelPlayer implements CommandExecutor {
     }
 
 
-    static Location initLoc1(int index, Player playerWorld){
+    static void initLoc1(int index, Player player){
         PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
-        Location p1Loc = new Location(loc.wName, loc.x1, loc.y1, loc.z1);
-        return  p1Loc;
+        System.out.println("mvtp " + player.getName() + " "+ loc.wName + " "+ loc.x1 + " "+ loc.y1 + " "+ loc.z1);
+        player.teleport(new Location(Bukkit.getWorld(loc.wName), loc.x1, loc.y1, loc.z1));
+        //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mvtp " + player.getName() + " "+ loc.wName + " "+ loc.x1 + " "+ loc.y1 + " "+ loc.z1);
+        return;
 
     }
 
-    static Location initLoc2(int index, Player playerWorld){
+    static void initLoc2(int index, Player player){
         PlayerLocation loc = (PlayerLocation) Main.locationArray.get(index);
-
-        Location p2Loc = new Location(loc.wName, loc.x2, loc.y2, loc.z2);
-        return  p2Loc;
+        player.teleport(new Location(Bukkit.getWorld(loc.wName), loc.x1, loc.y1, loc.z1));
+        //Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "mv tp " + player.getName() + " " + " "+ loc.wName + " "+ loc.x2 + " "+ loc.y2 + " "+ loc.z2);
+        return;
 
     }
 

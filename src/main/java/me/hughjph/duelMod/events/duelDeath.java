@@ -18,6 +18,9 @@ public class duelDeath implements Listener {
         //Checking if the player who died is in the duel
         if(duelPlayer.duelingPlayers.contains(dead.getName())){
             //getting the duel winner
+            dead.setHealth(20);
+            dead.teleport(Bukkit.getWorld("world").getSpawnLocation());
+
             Player winner = dead.getKiller();
 
             //finding the index of the map in the locationsTaken array and removing it
@@ -36,8 +39,9 @@ public class duelDeath implements Listener {
             dead.sendMessage("§6You Lost");
             winner.sendMessage("§6You Win!");
 
-            //killing off the winner to get him out of the duel arena
-            winner.setHealth(0);
+            //teleporting winner back to main world
+            winner.setHealth(20);
+            winner.teleport(Bukkit.getWorld("world").getSpawnLocation());
         }
     }
 
