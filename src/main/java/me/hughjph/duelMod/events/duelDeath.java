@@ -22,6 +22,15 @@ public class duelDeath implements Listener {
             dead.teleport(Bukkit.getWorld("world").getSpawnLocation());
 
             Player winner = dead.getKiller();
+            int indexOfLoser = duelPlayer.duelingPlayers.indexOf(dead.getName());
+
+            //getting the winner if the loser died due to another source of pain
+            if(indexOfLoser % 2 == 0 && winner.equals(null)){
+                winner = Bukkit.getPlayer(duelPlayer.duelingPlayers.get(indexOfLoser + 1).toString());
+            } else if (winner.equals(null)){
+                winner = Bukkit.getPlayer(duelPlayer.duelingPlayers.get(indexOfLoser - 1).toString());
+            }
+
 
             //finding the index of the map in the locationsTaken array and removing it
             if(duelPlayer.duelingPlayers.indexOf(winner.getName()) % 2 == 0){
