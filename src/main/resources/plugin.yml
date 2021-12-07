@@ -1,5 +1,5 @@
 name: duelPlugin
-main: me.hughjph.duelMod.Main
+main: me.hughjph.duelPlugin.Main
 version: 1.0
 api-version: 1.16
 
